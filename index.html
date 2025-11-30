@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbbVie Medical Terms - Wordscape Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Attract Mode Screen -->
+    <div id="attractMode" class="screen active">
+        <div class="attract-header">
+            <img src="AbbVie_brand.png" alt="AbbVie Brand" class="header-logo-item">
+            <img src="AbbVieLogo_RGB.png" alt="AbbVie RGB" class="header-logo-item">
+            <img src="abbVieLogo.jpg" alt="AbbVie" class="header-logo-item">
+        </div>
+        <div class="attract-content">
+            <h1 class="attract-title">Medical Terms Challenge</h1>
+            <p class="attract-subtitle">Touch to Start Playing</p>
+            <div class="floating-letters">
+                <span>M</span><span>E</span><span>D</span><span>I</span><span>C</span><span>A</span><span>L</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <header class="game-header">
+            <img src="AbbVie_logo.png" alt="AbbVie" class="header-logo">
+            <div class="game-info">
+                <span class="puzzle-counter">Puzzle <span id="currentPuzzle">1</span> of 10</span>
+                <span class="timer">Time: <span id="timer">00:00</span></span>
+                <span class="score">Score: <span id="score">0</span></span>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="description-area">
+                <h2 id="description">Loading description...</h2>
+                <button id="referenceBtn" class="reference-btn">View Medical Reference</button>
+            </div>
+
+            <div class="word-area">
+                <div id="answerSlots" class="answer-slots"></div>
+                <div class="word-controls">
+                    <button id="deleteBtn" class="delete-btn">Delete Letter</button>
+                    <button id="submitBtn" class="submit-btn">Submit Word</button>
+                </div>
+                <div id="letterCircle" class="letter-circle"></div>
+                <div id="confetti" class="confetti-container"></div>
+                <div id="wrongMark" class="wrong-mark">✗</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Reference Modal -->
+    <div id="referenceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Medical Reference</h3>
+            <p id="referenceText"></p>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="results-content">
+            <img src="AbbVie_logo.png" alt="AbbVie" class="logo">
+            <h1>Game Complete!</h1>
+            <div class="results-stats">
+                <div class="stat">
+                    <span class="stat-label">Final Score</span>
+                    <span class="stat-value" id="finalScore">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Total Time</span>
+                    <span class="stat-value" id="finalTime">00:00</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Correct Words</span>
+                    <span class="stat-value" id="correctWords">0/10</span>
+                </div>
+            </div>
+            <button id="playAgainBtn" class="play-again-btn">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+        <div class="footer-content">
+            <p>Abbvie Philippines Inc.</p>
+            <p>Office C, 4F KMC One Ayala Mall, Ayala Ave corner EDSA, San Lorenzo, Makati City 1223, Philippines</p>
+            <p>Tel: +632 8396 7435 | PH-OPF-250032 | December 2025</p>
+            <p><strong>FOR HEALTHCARE PROFESSIONALS ONLY</strong></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
