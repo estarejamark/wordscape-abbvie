@@ -127,6 +127,8 @@ class WordscapeGame {
         this.attractMode.classList.remove('active');
         this.gameScreen.classList.add('active');
         
+        // Select 3 random puzzles
+        this.selectedPuzzles = this.getRandomPuzzles(3);
         this.currentPuzzleIndex = 0;
         this.score = 0;
         this.correctWords = 0;
@@ -136,10 +138,15 @@ class WordscapeGame {
         this.loadPuzzle();
     }
 
+    getRandomPuzzles(count) {
+        const shuffled = [...this.puzzles].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, count);
+    }
+
     loadPuzzle() {
-        const puzzle = this.puzzles[this.currentPuzzleIndex];
+        const puzzle = this.selectedPuzzles[this.currentPuzzleIndex];
         
-        this.currentPuzzleEl.textContent = this.currentPuzzleIndex + 1;
+        document.querySelector('.puzzle-counter').innerHTML = `Puzzle <span id="currentPuzzle">${this.currentPuzzleIndex + 1}</span> of 3`;
         this.descriptionEl.textContent = puzzle.description;
         this.referenceText.textContent = puzzle.reference;
         
@@ -239,7 +246,7 @@ class WordscapeGame {
 
     updateAnswerSlots() {
         const slots = this.answerSlots.querySelectorAll('.answer-slot');
-        const puzzle = this.puzzles[this.currentPuzzleIndex];
+        const puzzle = this.selectedPuzzles[this.currentPuzzleIndex];
         const targetWord = puzzle.word;
         
         let wordIndex = 0;
@@ -260,7 +267,7 @@ class WordscapeGame {
     }
 
     checkWord(word) {
-        const puzzle = this.puzzles[this.currentPuzzleIndex];
+        const puzzle = this.selectedPuzzles[this.currentPuzzleIndex];
         const targetWord = puzzle.word.replace(/\s/g, '');
         
         if (word === targetWord) {
@@ -280,7 +287,7 @@ class WordscapeGame {
     }
 
     correctWord() {
-        const puzzle = this.puzzles[this.currentPuzzleIndex];
+        const puzzle = this.selectedPuzzles[this.currentPuzzleIndex];
         this.markLettersUsed();
         
         this.score += 100;
@@ -296,7 +303,7 @@ class WordscapeGame {
         }, 600);
         
         setTimeout(() => {
-            if (this.currentPuzzleIndex < this.puzzles.length - 1) {
+            if (this.currentPuzzleIndex < this.selectedPuzzles.length - 1) {
                 this.currentPuzzleIndex++;
                 this.loadPuzzle();
             } else {
@@ -346,7 +353,7 @@ class WordscapeGame {
         
         this.finalScore.textContent = this.score;
         this.finalTime.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        this.correctWordsEl.textContent = `${this.correctWords}/10`;
+        this.correctWordsEl.textContent = `${this.correctWords}/3`;
         
         this.playSound('gameComplete');
     }
